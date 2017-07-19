@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "ddef.h"
+#include "fdef.h"
+
+int crnm(struct number*n, char*ns)
+{
+    if(!n || !ns)
+    {
+        err_num = ERR_EMPT;
+        return -1;
+    }
+
+    int i=0;
+    int len = strlen(ns);
+
+    if(len<=0)return -1;
+
+    n->nm = (char*)malloc(sizeof(char)*(len+1));
+    if(!n->nm)
+    {
+        perror("malloc");
+        return -1;
+    }
+    n->end = len+1;
+    n->ppl=n->ppr=0;
+
+    int start=0;
+    if(ns[0]=='-')
+        {n->pn_flag='-';start++;}
+    else n->pn_flag = '+';
+
+    for(;start<len && ns[start]!='.';start++)
+        if(ns[start]>'0')break;
+
+    int b=0;
+    for(i=start;i<len && ns[i]!='.';i++)
+    {
+        n->nm[b++]=ns[i]-48;
+        n->ppl++;
+    }
+
+    int end=0;
+    for(end=len-1;end>i;end--)
+        if(ns[end]>'0')break;
+
+    if(ns[i]=='.')i++;
+
+    for(;i<=end;i++)
+    {
+        n->nm[b++]=ns[i]-48;
+        n->ppr++;
+    }
+
+    n->bits = n->ppl + n->ppr;
+    n->nm[n->bits]=END_CH;
+
+return 0;
+}

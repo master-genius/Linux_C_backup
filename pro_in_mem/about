@@ -1,0 +1,31 @@
+global:
+type	name		where
+
+int		a_fuck		a.c
+int		main_fuck	main.c
+char[]	fuck_c		c.c
+
+func:
+fa		in	a.c
+fb		in	b.c -->need to fa
+fc		in	c.c -->need to read and printf
+main	in	main.c -->need to fa fb fc printf sqrt
+
+/*
+all of functions is common, there is no special in some one
+so, find a address and calculate offest.
+*/
+
+.dynamic record all the information of dynamic
+/*in .dynamic find type 'SYMTAB', that is the entry of .dynsym*/
+.dynsym just save the symbol name which the program need.
+
+.rel.dyn
+relocate data symbol
+
+.rel.plt
+this is the recolate information of functions in share libraries. they about .got.plt
+the offest is address in this program .got.plt
+but in .got.plt, this address just record the running real address
+from .dynsym find functions name and find offest in .rel.plt ,then, jump *(addr) to
+.got.plt , there is the start real address.

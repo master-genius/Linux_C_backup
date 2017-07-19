@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "fdef.h"
+#include "ddef.h"
+#include <time.h>
+
+#define COUNTS      11111111
+
+int main(int ac, char* av[])
+{
+    if(ac<3)return 0;
+
+    int i, k;
+    struct number a , b , c;
+
+    int (*(f[3]))(struct number*,struct number*,struct number*);
+
+    if(crnm(&a,av[1])==-1)return -1;
+    if(crnm(&b,av[2])==-1)return -1;
+
+    //printf("  %d\n",a.bits);
+
+    nm_out(&a);
+    nm_out(&b);
+
+    clock_t start=0,end=0;
+    start=clock();
+
+    for(i=0;i<COUNTS;i++)
+    {
+        bw_mul(&a,&b,&c);
+        nm_free(&c);
+    }
+    end = clock();
+
+    printf("%.3f\n",((double)(end - start))/1000000);
+    nm_free(&a);
+    nm_free(&b);
+    //nm_free(&c);
+
+return 0;
+}
