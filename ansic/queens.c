@@ -2,7 +2,7 @@
 #include	<string.h>
 #include	<stdlib.h>
 
-#define Q_MIN	4
+#define Q_MIN	6
 #define Q_MAX	19
 #define Q_DEFT	8
 
@@ -20,31 +20,26 @@ struct qe_pos
 	int q_x;
 };
 
-int main()
+int main(int args, char* argv[])
 {
-	printf("enter a number__");
-	
 	int n=0;
-	
-	if(scanf("%d",&n)!=1)
-		n=Q_DEFT;
-	if(n<Q_MIN || n>Q_MAX)
-		n=Q_DEFT;
-	
-	if(ques(n)==-1)
-		printf("can not find\nfound a error\n");
+    if(args < 2){
+        return ques(8);
+    }
 
-return 0;
+    int i=1,tmp = 0,ret;
+    while(i<args){
+        tmp = atoi(argv[i]);
+        ret = (tmp<Q_MIN || tmp>Q_MAX)?printf("Error: %d is a illegal number\n",tmp):ques(tmp);
+        i+=1;
+        printf("\n");
+    }
+
+    return 0;
 }
 
 int ques(int n)
-{
-	if(n<=0)
-	{
-		printf("less than zero");
-		return -1;
-	}
-	
+{	
 	int** qe=(int**)malloc(sizeof(int*)*n);
 	if(!qe)
 	{
@@ -76,7 +71,7 @@ int ques(int n)
 	
 	destroy(qe,n);
 
-return 0;
+    return 0;
 }
 
 int calt(int**qe, int n)
@@ -137,7 +132,7 @@ int calt(int**qe, int n)
 	}
 	success(qe,n);
 
-return 0;
+    return 0;
 }
 
 int back(int**qe, int y, int x, int n)
@@ -170,7 +165,7 @@ int back(int**qe, int y, int x, int n)
 		if(qe[i][j]>0)
 			qe[i][j]--;
 
-return 0;
+    return 0;
 }
 
 int upd(int**qe, int y, int x, int n)
@@ -204,7 +199,7 @@ int upd(int**qe, int y, int x, int n)
 		if(qe[i][j]>=0)
 			qe[i][j]++;
 
-return 0;
+    return 0;
 }
 
 void success(int**qe, int n)
