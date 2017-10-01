@@ -230,6 +230,11 @@ int main(int ac, char* av[])
     }
     if(st_flag>0)st_flag |= FG_NAME;
 
+    if (ac==1) {
+        help();
+        return 0;
+    }
+
     if(ls_flag&LS_HELP)
     {
         help();
@@ -600,7 +605,7 @@ next:
     if(FG_BLKSZ & sflag)
         printf("%d ",(int)fi->st.st_blksize);
     if(FG_LINKS & sflag)
-        printf("%d ",fi->st.st_nlink);
+        printf("%ld ",fi->st.st_nlink);
 
     if(FG_TYPE & sflag)
     {
