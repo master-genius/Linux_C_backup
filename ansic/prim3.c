@@ -27,7 +27,7 @@ int primy(int*, int* );
 #define NUMC    7
 #define ARGS    8
 
-#define NLINE   11
+#define NLINE   10
 
 struct agsl
 {
