@@ -714,8 +714,8 @@ void help()
     printf("    -s:   list the size of file\n");
     printf("    -tm:  list the last time that operating the file\n");
     printf("    -l:   list the number of links\n");
-    printf("    -uid: list user id\n");
-    printf("    -gid: list group id\n");
+    printf("    -u: list user id\n");
+    printf("    -g: list group id\n");
     printf("    -a:   list all\n");
     printf("    -ld:  list dir stat\n");
     printf("    -lp:  list path\n");
