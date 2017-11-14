@@ -90,7 +90,7 @@ int main()
         if(wait(&status)!=cpid)
             perror("wait");
         printf("child exit:%d\n",status);
-        printf("Now parent exit..\n");
+        printf("parent exit..\n");
     }
 
     if(cpid==0)
@@ -143,7 +143,7 @@ int main()
 
         if(close(p[0]) || close(fd[1]))
             perror("close");
-        printf("Now child exit..\n");
+        printf("child exit..\n");
         fflush(stdout);
         usleep(300000);
     }
